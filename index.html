@@ -125,9 +125,7 @@ select, input {
     <div class="heart">💌</div>
     <h1>یه پیشنهاد کوچولو!</h1>
     <p>پایه‌ای یه قرار قشنگ با هم بریم؟ 🥹❤️</p>
-    <button class="primary" id="yesBtn" onclick="go(1)">
-      آره، بریم قرار! 😍
-    </button>
+    <button class="primary" id="yesBtn" onclick="go(1)">آره، بریم قرار! 😍</button>
     <button id="noBtn" onclick="sayNo()">نه! 🙄</button>
     <p id="noMsg" class="small"></p>
   </section>
@@ -139,36 +137,20 @@ select, input {
 
     <div class="field">
       <label>📅 تاریخ قرار</label>
-
       <p id="currentMonth" class="small"></p>
-
       <select id="day">
         <option value="">روز قرار رو انتخاب کن</option>
       </select>
-
-      <p class="small">
-        فقط روزهای باقی‌مونده از همین ماه قابل انتخابن 🌸
-      </p>
+      <p class="small">فقط روزهای باقی‌مونده از همین ماه قابل انتخابن 🌸</p>
     </div>
 
     <div class="field">
       <label for="time">🕒 ساعت دقیق قرار</label>
-
-      <input
-        type="time"
-        id="time"
-        step="60"
-        lang="en"
-      >
-
-      <p class="small">
-        هر ساعتی خواستی وارد کن؛ مثلاً 14:14 یا 19:35 ❤️
-      </p>
+      <input type="time" id="time" step="60" lang="en">
+      <p class="small">هر ساعتی خواستی وارد کن؛ مثلاً 14:14 یا 19:35 ❤️</p>
     </div>
 
-    <button class="primary" onclick="nextDate()">
-      بریم مرحله بعد ❤️
-    </button>
+    <button class="primary" onclick="nextDate()">بریم مرحله بعد ❤️</button>
   </section>
 
   <section class="step" id="s2">
@@ -204,7 +186,7 @@ select, input {
   <section class="step" id="s4">
     <div class="heart">💖</div>
     <h1>قرارمون ثبت شد! ❤️😍</h1>
-<p>پس اون تایم آماده باش خودم میام دنبالت ببعی جونم😂🫣❤️</p>
+    <p>پس اون تایم آماده باش خودم میام دنبالت ببعی جونم😂🫣❤️</p>
 
     <div class="summary" id="summary"></div>
 
@@ -230,16 +212,12 @@ const noMessages = [
 ];
 
 function go(n) {
-  document.querySelectorAll(".step").forEach(s =>
-    s.classList.remove("active")
-  );
-
+  document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
   document.getElementById("s" + n).classList.add("active");
 }
 
 function sayNo() {
   noCount++;
-
   document.getElementById("noMsg").textContent =
     noMessages[Math.min(noCount - 1, noMessages.length - 1)];
 
@@ -253,26 +231,17 @@ function sayNo() {
   }
 }
 
-/* تقویم شمسی: فقط روزهای باقی‌مانده از ماه جاری */
-
 function getPersianDate(date) {
-  const parts = new Intl.DateTimeFormat(
-    "en-US-u-ca-persian-nu-latn",
-    {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric"
-    }
-  ).formatToParts(date);
+  const parts = new Intl.DateTimeFormat("en-US-u-ca-persian-nu-latn", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric"
+  }).formatToParts(date);
 
   const result = {};
-
   parts.forEach(part => {
-    if (part.type !== "literal") {
-      result[part.type] = Number(part.value);
-    }
+    if (part.type !== "literal") result[part.type] = Number(part.value);
   });
-
   return result;
 }
 
@@ -291,18 +260,10 @@ function setupCalendar() {
   const current = getPersianDate(today);
 
   document.getElementById("currentMonth").textContent =
-    monthNames[current.month] + " " +
-    toPersianDigits(current.year);
+    monthNames[current.month] + " " + toPersianDigits(current.year);
 
   const daySelect = document.getElementById("day");
-  daySelect.innerHTML =
-    '<option value="">روز قرار رو انتخاب کن</option>';
-
-  /*
-    روزهای تقویم دستگاه را بررسی می‌کنیم.
-    فقط روزهایی نمایش داده می‌شوند که در همان ماه شمسی
-    فعلی باشند و از امروز زودتر نباشند.
-  */
+  daySelect.innerHTML = '<option value="">روز قرار رو انتخاب کن</option>';
 
   for (let offset = 0; offset < 32; offset++) {
     const date = new Date(
@@ -319,10 +280,8 @@ function setupCalendar() {
       persian.day >= current.day
     ) {
       const option = document.createElement("option");
-
       option.value = persian.day;
       option.textContent = toPersianDigits(persian.day);
-
       daySelect.appendChild(option);
     }
   }
@@ -352,11 +311,7 @@ function nextDate() {
 
 function chooseType(type, button) {
   selectedType = type;
-
-  document.querySelectorAll("#s2 .option").forEach(b =>
-    b.classList.remove("selected")
-  );
-
+  document.querySelectorAll("#s2 .option").forEach(b => b.classList.remove("selected"));
   button.classList.add("selected");
 }
 
@@ -366,10 +321,7 @@ function nextType() {
     return;
   }
 
-  if (
-    selectedType.includes("شام رمانتیک") ||
-    selectedType.includes("کافه")
-  ) {
+  if (selectedType.includes("شام رمانتیک") || selectedType.includes("کافه")) {
     go(3);
   } else {
     selectedFood = "انتخاب غذا لازم نیست";
@@ -380,11 +332,7 @@ function nextType() {
 
 function chooseFood(food, button) {
   selectedFood = food;
-
-  document.querySelectorAll("#s3 .option").forEach(b =>
-    b.classList.remove("selected")
-  );
-
+  document.querySelectorAll("#s3 .option").forEach(b => b.classList.remove("selected"));
   button.classList.add("selected");
 }
 
