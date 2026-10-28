@@ -2,266 +2,151 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>یه قرار قشنگ؟ ❤️</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  font-family: Tahoma, Arial, sans-serif;
-  background: linear-gradient(135deg, #ffe0eb, #fff0f5, #ffd6e7);
-  color: #5c243c;
-}
-
-.card {
-  width: 100%;
-  max-width: 440px;
-  padding: 28px 22px;
-  background: rgba(255,255,255,.94);
-  border-radius: 28px;
-  text-align: center;
-  box-shadow: 0 12px 40px rgba(190, 55, 105, .16);
-  border: 1px solid #fff;
-}
-
-.heart {
-  font-size: 65px;
-  animation: beat 1.2s infinite;
-}
-
-@keyframes beat {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-}
-
-h1 {
-  font-size: 25px;
-  line-height: 1.8;
-  margin: 12px 0;
-}
-
-p {
-  line-height: 2;
-  color: #8c536a;
-}
-
-button, input, select {
-  font-family: inherit;
-}
-
-button {
-  border: none;
-  border-radius: 15px;
-  padding: 14px 18px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-button:active {
-  transform: scale(.97);
-}
-
-.yes {
-  background: linear-gradient(135deg, #ff4d85, #ed1760);
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 5px 15px #ffb3ca;
-}
-
-.no {
-  background: #f1edf0;
-  color: #765d68;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.message {
-  min-height: 48px;
-  margin-top: 18px;
-  color: #e52e6b;
-  font-weight: bold;
-  line-height: 1.9;
-}
-
-.step {
-  display: none;
-}
-
-.step.active {
-  display: block;
-  animation: appear .35s ease;
-}
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.field {
-  text-align: right;
-  margin: 20px 0;
-}
-
-label {
-  display: block;
-  margin-bottom: 9px;
-  font-weight: bold;
-}
-
-input, select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #f0bfd0;
-  border-radius: 12px;
-  background: white;
-  color: #5c243c;
-  font-size: 16px;
-}
-
-.options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.option {
-  background: #fff0f5;
-  border: 2px solid #f8d4e0;
-  color: #74334f;
-  padding: 14px 8px;
-  line-height: 1.8;
-}
-
-.option.selected {
-  background: #ffe0eb;
-  border-color: #f03b78;
-}
-
-.next {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.back {
-  background: transparent;
-  color: #9b6078;
-  margin-top: 12px;
-}
-
-.summary {
-  text-align: right;
-  background: #fff3f7;
-  border-radius: 15px;
-  padding: 15px;
-  line-height: 2.3;
-  margin-top: 18px;
-  overflow-wrap: anywhere;
-}
-
-.small {
-  font-size: 12px;
-  color: #a37c8c;
-  margin-top: 24px;
-}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px;background:linear-gradient(135deg,#ffd6e7,#fff0f5);font-family:Tahoma,Arial;color:#702743}
+.card{width:100%;max-width:430px;background:white;border-radius:25px;padding:25px 20px;text-align:center;box-shadow:0 8px 35px #eaa9c2}
+.heart{font-size:55px}
+h2{line-height:1.8}
+p{line-height:2;color:#986078}
+button,input,select{font:inherit}
+button{border:0;border-radius:13px;padding:13px;margin:5px;cursor:pointer}
+.yes{background:#ed3977;color:white;font-weight:bold}
+.no{background:#f4eaf0;color:#74465a}
+.step{display:none}
+.step.active{display:block}
+.field{text-align:right;margin:18px 0}
+label{display:block;margin-bottom:8px}
+input{width:100%;padding:12px;border:1px solid pink;border-radius:10px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:15px 0}
+.option{background:#fff0f5;border:2px solid #f7cfdd;color:#702743;margin:0}
+.option.selected{border-color:#ed3977;background:#ffe0eb}
+.next{width:100%;margin-top:18px}
+.msg{min-height:45px;color:#ed3977;line-height:2}
+.summary{background:#fff0f5;padding:12px;border-radius:12px;line-height:2.5;text-align:right;overflow-wrap:anywhere}
 </style>
 </head>
-
 <body>
 <main class="card">
 
-  <section class="step active" id="step0">
-    <div class="heart">💌</div>
-    <h1>یه سؤال مهم ازت دارم...</h1>
-    <p>حاضری با من یه قرار قشنگ بذاری؟ 🥹❤️</p>
+<section class="step active" id="s0">
+<div class="heart">💌</div>
+<h2>یه سؤال مهم ازت دارم!</h2>
+<p>حاضری با من یه قرار قشنگ بذاری؟ 🥹❤️</p>
+<button class="yes" id="yes" onclick="go(1)">آره، بریم قرار! 😍</button>
+<button class="no" id="no" onclick="sayNo()">نه! 🙈</button>
+<div class="msg" id="msg"></div>
+</section>
 
-    <div class="buttons">
-      <button class="yes" id="yesBtn" onclick="startDate()">
-        آره، بریم قرار! 😍
-      </button>
+<section class="step" id="s1">
+<div class="heart">📅</div>
+<h2>کی بریم قرار؟ 💗</h2>
+<div class="field">
+<label for="date">تاریخ قرار</label>
+<input id="date" type="date">
+</div>
+<div class="field">
+<label for="time">ساعت قرار</label>
+<input id="time" type="time">
+</div>
+<button class="yes next" onclick="dateNext()">مرحلهٔ بعد ❤️</button>
+<button onclick="go(0)">برگشت</button>
+</section>
 
-      <button class="no" id="noBtn" onclick="sayNo()">
-        نه! 🙈
-      </button>
-    </div>
+<section class="step" id="s2">
+<div class="heart">🥰</div>
+<h2>چه قراری بریم؟</h2>
+<p>تو انتخاب کن، من پایه‌ام! ❤️</p>
+<div class="options">
+<button class="option" onclick="pick('type','شام رمانتیک 🍽️',this)">🍽️<br>شام رمانتیک</button>
+<button class="option" onclick="pick('type','کافه ☕',this)">☕<br>کافه</button>
+<button class="option" onclick="pick('type','سینما 🎬',this)">🎬<br>سینما</button>
+<button class="option" onclick="pick('type','تفریح 🎡',this)">🎡<br>تفریح</button>
+<button class="option" onclick="pick('type','پیاده‌روی 🌙',this)">🌙<br>پیاده‌روی</button>
+<button class="option" onclick="pick('type','سورپرایز 🎁',this)">🎁<br>سورپرایز</button>
+</div>
+<button class="yes next" onclick="typeNext()">انتخاب کردم ❤️</button>
+<button onclick="go(1)">برگشت</button>
+</section>
 
-    <div class="message" id="noMessage"></div>
-  </section>
+<section class="step" id="s3">
+<div class="heart">🍕</div>
+<h2>چی بخوریم؟ 😋</h2>
+<div class="options">
+<button class="option" onclick="pick('food','ایتالیایی 🍝',this)">🍝<br>ایتالیایی</button>
+<button class="option" onclick="pick('food','فست‌فود 🍔',this)">🍔<br>فست‌فود</button>
+<button class="option" onclick="pick('food','غذای ایرانی 🍢',this)">🍢<br>ایرانی</button>
+<button class="option" onclick="pick('food','پیتزا 🍕',this)">🍕<br>پیتزا</button>
+<button class="option" onclick="pick('food','سوشی 🍣',this)">🍣<br>سوشی</button>
+<button class="option" onclick="pick('food','فرقی نداره ❤️',this)">❤️<br>فرقی نداره</button>
+</div>
+<button class="yes next" onclick="finishFood()">بریم! 💕</button>
+<button onclick="go(2)">برگشت</button>
+</section>
 
-  <section class="step" id="step1">
-    <div class="heart">📅</div>
-    <h1>کی بریم قرار؟ 💗</h1>
-    <p>یه روز قشنگ انتخاب کن!</p>
+<section class="step" id="s4">
+<div class="heart">🎉</div>
+<h2>قرارمون ثبت شد! ❤️😍</h2>
+<div class="summary" id="summary"></div>
+<h2>پس اون تایم آماده باش، خودم میام دنبالت! 🚗❤️</h2>
+<p>منتظر یه روز قشنگ باش! 💗</p>
+</section>
 
-    <div class="field">
-      <label for="date">تاریخ قرار</label>
-      <input type="date" id="date">
-    </div>
+</main>
+<script>
+let count=0,type="",food="",date="",time="";
+const messages=[
+"مطمئنی؟ 🥺❤️",
+"یه بار دیگه فکر کن! 😂💗",
+"این‌قدر راحت می‌خوای دلمو بشکنی؟ 💔🥹",
+"ببین دکمهٔ آره چقدر قشنگه! 🥹💕",
+"فقط یه بار بزن آره، قول می‌دم خوش بگذره! 😂❤️",
+"آخرین فرصت برای تجدیدنظر! 😂💖"
+];
 
-    <div class="field">
-      <label for="time">ساعت قرار</label>
-      <input type="time" id="time">
-    </div>
-
-    <button class="yes next" onclick="chooseDate()">
-      بریم مرحلهٔ بعد ❤️
-    </button>
-    <button class="back" onclick="showStep(0)">برگشت</button>
-  </section>
-
-  <section class="step" id="step2">
-    <div class="heart">🥰</div>
-    <h1>چه قراری بریم؟</h1>
-    <p>تو انتخاب کن، من پایه‌ام! ❤️</p>
-
-    <div class="options">
-      <button class="option" onclick="pickType('شام رمانتیک 🍽️',this)">🍽️<br>شام رمانتیک</button>
-      <button class="option" onclick="pickType('کافه ☕',this)">☕<br>کافه</button>
-      <button class="option" onclick="pickType('سینما 🎬',this)">🎬<br>سینما</button>
-      <button class="option" onclick="pickType('تفریح و خوش‌گذرونی 🎡',this)">🎡<br>تفریح</button>
-      <button class="option" onclick="pickType('پیاده‌روی 🌙',this)">🌙<br>پیاده‌روی</button>
-      <button class="option" onclick="pickType('سورپرایز خودت! 🎁',this)">🎁<br>سورپرایز!</button>
-    </div>
-
-    <button class="yes next" onclick="chooseType()">انتخاب کردم ❤️</button>
-    <button class="back" onclick="showStep(1)">برگشت</button>
-  </section>
-
-  <section class="step" id="step3">
-    <div class="heart">🍕</div>
-    <h1>چی بخوریم؟ 😋</h1>
-    <p>غذای موردعلاقه‌تو انتخاب کن!</p>
-
-    <div class="options">
-      <button class="option" onclick="pickFood('ایتالیایی 🍝',this)">🍝<br>ایتالیایی</button>
-      <button class="option" onclick="pickFood('فست‌فود 🍔',this)">🍔<br>فست‌فود</button>
-      <button class="option" onclick="pickFood('غذای ایرانی 🍢',this)">🍢<br>ایرانی</button>
-      <button class="option" onclick="pickFood('پیتزا 🍕',this)">🍕<br>پیتزا</button>
-      <button class="option" onclick="pickFood('سوشی 🍣',this)">🍣<br>سوشی</button>
-      <button class="option" onclick="pickFood('فرقی نداره، با تو همه‌چی خوبه ❤️',this)">❤️<br>فرقی نداره!</button>
-    </div>
-
-    <button class="yes next" onclick="finishFood()">بریم ببینیم چی شد! 💕</button>
-    <button class="back" onclick="showStep(2)">برگشت</button>
-  </section>
-
-  <section class="step" id="step4">
-    <div class="heart">🎉</div>
-    <h1>قرارمون ثبت شد
+function go(n){
+ document.querySelectorAll(".step").forEach(e=>e.classList.remove("active"));
+ document.getElementById("s"+n).classList.add("active");
+}
+function sayNo(){
+ document.getElementById("msg").textContent=messages[Math.min(count,5)];
+ count++;
+ document.getElementById("yes").style.transform="scale("+Math.min(1+count*.13,1.8)+")";
+ if(count>=6)document.getElementById("no").style.display="none";
+}
+function dateNext(){
+ date=document.getElementById("date").value;
+ time=document.getElementById("time").value;
+ if(!date||!time){alert("تاریخ و ساعت رو انتخاب کن ❤️");return}
+ const d=new Date(date+"T00:00:00");
+ const today=new Date();today.setHours(0,0,0,0);
+ if(d<today){alert("یه تاریخ از امروز به بعد انتخاب کن ❤️");return}
+ go(2);
+}
+function pick(kind,value,button){
+ if(kind==="type")type=value;else food=value;
+ button.parentElement.querySelectorAll("button").forEach(b=>b.classList.remove("selected"));
+ button.classList.add("selected");
+}
+function typeNext(){
+ if(!type){alert("نوع قرار رو انتخاب کن 🥰");return}
+ if(type.startsWith("شام")||type.startsWith("کافه"))go(3);
+ else{food="";finish()}
+}
+function finishFood(){
+ if(!food){alert("غذا رو انتخاب کن 🍕");return}
+ finish();
+}
+function finish(){
+ const parts=date.split("-");
+ document.getElementById("summary").textContent=
+ "📅 تاریخ: "+parts[2]+"/"+parts[1]+"/"+parts[0]+
+ " | 🕒 ساعت: "+time+" | 💑 نوع قرار: "+type+
+ (food?" | 🍽️ غذا: "+food:"");
+ go(4);
+}
+</script>
+</body>
+</html>
