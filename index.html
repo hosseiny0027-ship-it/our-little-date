@@ -53,3 +53,345 @@ button {
   padding: 13px 17px;
   margin: 6px 3px;
   cursor: pointer;
+  transition: transform .2s;
+}
+
+button:active { transform: scale(.96); }
+
+.primary {
+  background: #ec4c83;
+  color: white;
+}
+
+.secondary {
+  background: #ffe3ed;
+  color: #8b3154;
+}
+
+.option {
+  background: #fff0f5;
+  border: 2px solid #ffd0e0;
+  color: #7b3150;
+  width: 100%;
+  margin: 6px 0;
+}
+
+.option.selected {
+  background: #ec4c83;
+  border-color: #ec4c83;
+  color: white;
+}
+
+.step { display: none; }
+.step.active { display: block; }
+
+.field {
+  text-align: right;
+  margin: 17px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 9px;
+  font-weight: bold;
+}
+
+select, input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #e8b8ca;
+  border-radius: 12px;
+  background: white;
+  color: #54243a;
+}
+
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 7px;
+}
+
+.small {
+  font-size: 12px;
+  color: #99667a;
+}
+
+#noBtn {
+  background: #eee;
+  color: #555;
+}
+
+.summary {
+  background: #fff0f5;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: right;
+  line-height: 2.2;
+  overflow-wrap: anywhere;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+
+  <section class="step active" id="s0">
+    <div class="heart">💌</div>
+    <h1>یه پیشنهاد کوچولو!</h1>
+    <p>پایه‌ای یه قرار قشنگ با هم بریم؟ 🥹❤️</p>
+    <button class="primary" id="yesBtn" onclick="go(1)">آره، بریم قرار! 😍</button>
+    <button id="noBtn" onclick="sayNo()">نه! 🙄</button>
+    <p id="noMsg" class="small"></p>
+  </section>
+
+  <section class="step" id="s1">
+    <div class="heart">🌷</div>
+    <h1>پس بریم یه قرار بچینیم!</h1>
+    <p>اول بگو چه روزی و چه ساعتی؟ 💗</p>
+
+    <div class="field">
+      <label>📅 تاریخ قرار (شمسی)</label>
+      <div class="date-row">
+        <select id="day">
+          <option value="">روز</option>
+        </select>
+        <select id="month">
+          <option value="">ماه</option>
+          <option value="1">فروردین</option>
+          <option value="2">اردیبهشت</option>
+          <option value="3">خرداد</option>
+          <option value="4">تیر</option>
+          <option value="5">مرداد</option>
+          <option value="6">شهریور</option>
+          <option value="7">مهر</option>
+          <option value="8">آبان</option>
+          <option value="9">آذر</option>
+          <option value="10">دی</option>
+          <option value="11">بهمن</option>
+          <option value="12">اسفند</option>
+        </select>
+        <select id="year">
+          <option value="">سال</option>
+          <option value="1405">۱۴۰۵</option>
+          <option value="1406">۱۴۰۶</option>
+          <option value="1407">۱۴۰۷</option>
+          <option value="1408">۱۴۰۸</option>
+        </select>
+      </div>
+      <p class="small">تاریخ رو به شمسی انتخاب کن 🌸</p>
+    </div>
+
+    <div class="field">
+      <label>🕒 ساعت قرار</label>
+      <select id="time">
+        <option value="">ساعت رو انتخاب کن</option>
+        <option>۱۰:۰۰ صبح</option>
+        <option>۱۱:۰۰ صبح</option>
+        <option>۱۲:۰۰ ظهر</option>
+        <option>۱۳:۰۰</option>
+        <option>۱۴:۰۰</option>
+        <option>۱۵:۰۰</option>
+        <option>۱۶:۰۰</option>
+        <option>۱۷:۰۰</option>
+        <option>۱۸:۰۰</option>
+        <option>۱۹:۰۰</option>
+        <option>۲۰:۰۰</option>
+        <option>۲۱:۰۰</option>
+        <option>۲۲:۰۰</option>
+      </select>
+    </div>
+
+    <button class="primary" onclick="nextDate()">بریم مرحله بعد ❤️</button>
+  </section>
+
+  <section class="step" id="s2">
+    <div class="heart">✨</div>
+    <h1>حالا کجا بریم؟</h1>
+    <p>یکی رو انتخاب کن 😍</p>
+
+    <button class="option" onclick="chooseType('شام رمانتیک 🍝',this)">🍝 شام رمانتیک</button>
+    <button class="option" onclick="chooseType('کافه ☕',this)">☕ کافه</button>
+    <button class="option" onclick="chooseType('سینما 🎬',this)">🎬 سینما</button>
+    <button class="option" onclick="chooseType('یه فعالیت باحال 🎳',this)">🎳 یه فعالیت باحال</button>
+    <button class="option" onclick="chooseType('پیاده‌روی 🌙',this)">🌙 پیاده‌روی</button>
+    <button class="option" onclick="chooseType('سورپرایز 🎁',this)">🎁 سورپرایز</button>
+
+    <button class="primary" onclick="nextType()">ادامه بده 💗</button>
+  </section>
+
+  <section class="step" id="s3">
+    <div class="heart">🍕</div>
+    <h1>چی بخوریم؟</h1>
+    <p>این قسمت رو هم تو انتخاب کن 😋</p>
+
+    <button class="option" onclick="chooseFood('ایتالیایی 🍝',this)">🍝 ایتالیایی</button>
+    <button class="option" onclick="chooseFood('فست‌فود 🍔',this)">🍔 فست‌فود</button>
+    <button class="option" onclick="chooseFood('غذای ایرانی 🍚',this)">🍚 غذای ایرانی</button>
+    <button class="option" onclick="chooseFood('پیتزا 🍕',this)">🍕 پیتزا</button>
+    <button class="option" onclick="chooseFood('سوشی 🍣',this)">🍣 سوشی</button>
+    <button class="option" onclick="chooseFood('هرچی تو بگی ❤️',this)">❤️ هرچی تو بگی</button>
+
+    <button class="primary" onclick="finishFood()">تمومه، ثبتش کن! 💕</button>
+  </section>
+
+  <section class="step" id="s4">
+    <div class="heart">💖</div>
+    <h1>قرارمون ثبت شد! ❤️😍</h1>
+    <p>پس اون تایم آماده باش، خودم میام دنبالت! 🚗❤️</p>
+
+    <div class="summary" id="summary"></div>
+
+    <p>حالا دیگه بهونه‌ای قبول نیستا! 😂💕</p>
+  </section>
+
+</div>
+
+<script>
+let noCount = 0;
+let selectedType = "";
+let selectedFood = "";
+
+const noMessages = [
+  "مطمئنی؟ یه بار دیگه فکر کن 🥹",
+  "آخه چرااا؟ 😭💔",
+  "من از قبل ذوق کرده بودمااا 😂",
+  "یه کافه کوچولو هم نه؟ 🥺",
+  "این دکمه نه دیگه داره مشکوک میشه 😂",
+  "باشه... ولی هنوز فرصت داری نظرتو عوض کنی 😌❤️"
+];
+
+function go(n) {
+  document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+  document.getElementById("s" + n).classList.add("active");
+}
+
+function sayNo() {
+  noCount++;
+  document.getElementById("noMsg").textContent =
+    noMessages[Math.min(noCount - 1, noMessages.length - 1)];
+
+  const yes = document.getElementById("yesBtn");
+  yes.style.transform = "scale(" + Math.min(1 + noCount * 0.12, 1.8) + ")";
+
+  if (noCount >= 6) {
+    document.getElementById("noBtn").style.display = "none";
+    document.getElementById("noMsg").textContent =
+      "ظاهراً باید روی آره کلیک کنی! 😂❤️";
+  }
+}
+
+const daySelect = document.getElementById("day");
+
+for (let d = 1; d <= 31; d++) {
+  const opt = document.createElement("option");
+  opt.value = d;
+  opt.textContent = d.toLocaleString("fa-IR");
+  daySelect.appendChild(opt);
+}
+
+function updateDays() {
+  const month = Number(document.getElementById("month").value);
+  const year = Number(document.getElementById("year").value);
+  let maxDay = 31;
+
+  if (month >= 1 && month <= 6) {
+    maxDay = 31;
+  } else if (month >= 7 && month <= 11) {
+    maxDay = 30;
+  } else if (month === 12) {
+    maxDay = [1399, 1403, 1408].includes(year) ? 30 : 29;
+  }
+
+  const previous = Number(daySelect.value);
+  daySelect.innerHTML = '<option value="">روز</option>';
+
+  for (let d = 1; d <= maxDay; d++) {
+    const opt = document.createElement("option");
+    opt.value = d;
+    opt.textContent = d.toLocaleString("fa-IR");
+    daySelect.appendChild(opt);
+  }
+
+  if (previous && previous <= maxDay) daySelect.value = previous;
+}
+
+document.getElementById("month").addEventListener("change", updateDays);
+document.getElementById("year").addEventListener("change", updateDays);
+
+function toPersianDigits(value) {
+  return String(value).replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+}
+
+const monthNames = [
+  "", "فروردین", "اردیبهشت", "خرداد", "تیر",
+  "مرداد", "شهریور", "مهر", "آبان",
+  "آذر", "دی", "بهمن", "اسفند"
+];
+
+let selectedDate = "";
+let selectedTime = "";
+
+function nextDate() {
+  const d = Number(daySelect.value);
+  const m = Number(document.getElementById("month").value);
+  const y = Number(document.getElementById("year").value);
+  const t = document.getElementById("time").value;
+
+  if (!d || !m || !y || !t) {
+    alert("اول تاریخ و ساعت قرار رو انتخاب کن ❤️");
+    return;
+  }
+
+  selectedDate = toPersianDigits(d) + " " + monthNames[m] + " " + toPersianDigits(y);
+  selectedTime = t;
+  go(2);
+}
+
+function chooseType(type, button) {
+  selectedType = type;
+  document.querySelectorAll("#s2 .option").forEach(b => b.classList.remove("selected"));
+  button.classList.add("selected");
+}
+
+function nextType() {
+  if (!selectedType) {
+    alert("اول بگو کجا بریم 😍");
+    return;
+  }
+
+  if (selectedType.includes("شام رمانتیک") || selectedType.includes("کافه")) {
+    go(3);
+  } else {
+    selectedFood = "انتخاب غذا لازم نیست";
+    showSummary();
+    go(4);
+  }
+}
+
+function chooseFood(food, button) {
+  selectedFood = food;
+  document.querySelectorAll("#s3 .option").forEach(b => b.classList.remove("selected"));
+  button.classList.add("selected");
+}
+
+function finishFood() {
+  if (!selectedFood) {
+    alert("یکی از گزینه‌ها رو انتخاب کن ❤️");
+    return;
+  }
+
+  showSummary();
+  go(4);
+}
+
+function showSummary() {
+  document.getElementById("summary").innerHTML =
+    "<b>📅 تاریخ:</b> " + selectedDate + "<br>" +
+    "<b>🕒 ساعت:</b> " + selectedTime + "<br>" +
+    "<b>📍 برنامه:</b> " + selectedType + "<br>" +
+    "<b>🍽️ غذا:</b> " + selectedFood;
+}
+</script>
+
+</body>
+        </html>
